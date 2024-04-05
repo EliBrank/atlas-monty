@@ -9,6 +9,8 @@
  */
 int main(int argc, char **argv)
 {
+	char *instruction;
+
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
@@ -20,4 +22,23 @@ int main(int argc, char **argv)
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
+
+	/* sends input to be read and tokenized */
+	instruction = string_trim(argv[1]);
+
+	/*
+	if ( == -1)
+	{
+		fprintf(stderr, "L%d: unknown instruction %s\n", line_num, op_code);
+		exit(EXIT_FAILURE);
+	}
+	*/
+
+	/*
+	if ( == -1)
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
+	*/
 }

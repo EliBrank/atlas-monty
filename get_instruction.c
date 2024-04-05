@@ -8,5 +8,5 @@
  */
 int get_instruction(char *op_code)
 {
-
+	opt
 }
