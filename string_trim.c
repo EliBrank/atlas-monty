@@ -17,7 +17,7 @@ char *string_trim(char *str)
 	if (str_trimmed == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
-		return (NULL);
+		exit(EXIT_FAILURE);
 	}
 
 	memset(str_trimmed, 0, (len + 1) * sizeof(char));

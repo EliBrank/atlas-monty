@@ -36,7 +36,10 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-void push(char *int_to_push);
+extern int global_num;
+
+
 int get_instruction(char *op_code);
+char *string_trim(char *str);
 
 #endif

@@ -9,7 +9,10 @@
  */
 int main(int argc, char **argv)
 {
-	char *instruction;
+	char *instruction, *line_buf = NULL;
+	FILE *file;
+	size_t buf_len = 0;
+	ssize_t read;
 
 	if (argc != 2)
 	{
@@ -17,14 +20,23 @@ int main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 
-	if (access(argv[1], R_OK) == -1)
+	file = fopen(argv[1], "r");
+	if (file == NULL)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
+	
+	/* central loop to get instructions from file */
+	/* REMEMBER TO FREE LINE_BUF */
+	while ((read = getline(&line_buf, &buf_len, file)) != -1)
+	{
+		/* REMEMBER TO FREE INSTRUCTION */
+		instruction = string_trim(line_buf);
+		get_instruction(instruction);
+	}
 
 	/* sends input to be read and tokenized */
-	instruction = string_trim(argv[1]);
 
 	/*
 	if ( == -1)

@@ -1,33 +1,47 @@
 #include "monty.h"
 
-/**
- * push - adds node to stack
- * @head: current first element in the stack
- * @num_to_push: number to add to new node
- */
-void push(stack_t **head, char *num_to_push)
-{
-	bool is_zero = false;
-	int int_to_push = 0;
+int push_value;
 
-	if (strcmp(num_to_push, "0") == 0)
-		is_zero = true;
-	
-	int_to_push = atoi(num_to_push);
-	if (int_to_push == 0 && is_zero == false)
+/**
+ * op_push - adds node to stack
+ * @head: current first element in the stack
+ */
+void op_push(stack_t **head)
+{
+	stack_t *new = NULL;
+
+	if (head == NULL)
+		return (NULL);
+
+	/* MALLOC ALERT */
+	new = malloc(sizeof(stack_t));
+
+	if (new == NULL)
+		return (NULL);
+
+	new->n = n;
+	new->prev = NULL;
+	new->next = NULL;
+
+	if (*head == NULL)
 	{
-		/* num_to_push passed was not an integer */
-		/* ADD ERROR HANDLING AT RETURN AREA */
-		return (-1)
+		*head = new;
+		return (*head);
 	}
-	node_init(num_to_push);
+
+	new->next = *head;
+	(*head)->prev = new;
+
+	*head = new;
+
+	return (*head);
 }
 
 /**
- * pall - prints all nodes in stack
+ * op_pall - prints all nodes in stack
  * @head: current first element in the stack
  */
-void pall(stack_t **head)
+void op_pall(stack_t **head)
 {
 	stack_t *tmp = NULL;
 
@@ -38,3 +52,28 @@ void pall(stack_t **head)
 		tmp = tmp->next;
 	}
 }
+
+/**
+ * pint - prints the value at the top of the stack
+ * @head: current first element in the stack
+ */
+
+/**
+ * pop - removes the top element of the stack
+ * @head: current first element in the stack
+ */
+
+/**
+ * swap - swaps the position of the first two elements in the stack
+ * @head: current first element in the stack
+ */
+
+/**
+ * add - adds the top two elements of the stack together
+ * @head: current first element in the stack
+ */
+
+/**
+ * nop - does nothing
+ * @head: current first element in the stack
+ */
