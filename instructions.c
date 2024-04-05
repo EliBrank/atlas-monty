@@ -5,21 +5,23 @@ int push_value;
 /**
  * op_push - adds node to stack
  * @head: current first element in the stack
+ *
+ * Return: 1 if success, else 0
  */
-void op_push(stack_t **head)
+int op_push(stack_t **head)
 {
 	stack_t *new = NULL;
 
 	if (head == NULL)
-		return (NULL);
+		return (0);
 
 	/* MALLOC ALERT */
 	new = malloc(sizeof(stack_t));
 
 	if (new == NULL)
-		return (NULL);
+		return (0);
 
-	new->n = n;
+	new->n = global_num;
 	new->prev = NULL;
 	new->next = NULL;
 
@@ -34,14 +36,16 @@ void op_push(stack_t **head)
 
 	*head = new;
 
-	return (*head);
+	return (1);
 }
 
 /**
  * op_pall - prints all nodes in stack
  * @head: current first element in the stack
+ *
+ * Return: 1 (always success)
  */
-void op_pall(stack_t **head)
+int op_pall(stack_t **head)
 {
 	stack_t *tmp = NULL;
 
@@ -51,29 +55,41 @@ void op_pall(stack_t **head)
 		printf("%s\n", tmp->n);
 		tmp = tmp->next;
 	}
+
+	return (1);
 }
 
 /**
  * pint - prints the value at the top of the stack
  * @head: current first element in the stack
+ *
+ * Return: 1 if success, else 0
  */
 
 /**
  * pop - removes the top element of the stack
  * @head: current first element in the stack
+ *
+ * Return: 1 if success, else 0
  */
 
 /**
  * swap - swaps the position of the first two elements in the stack
  * @head: current first element in the stack
+ *
+ * Return: 1 if success, else 0
  */
 
 /**
  * add - adds the top two elements of the stack together
  * @head: current first element in the stack
+ *
+ * Return: 1 if success, else 0
  */
 
 /**
  * nop - does nothing
  * @head: current first element in the stack
+ *
+ * Return: 1 if success, else 0
  */

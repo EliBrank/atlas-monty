@@ -5,7 +5,7 @@
  * @argc: number of args (needs to be 2)
  * @argv: arg array (executable name and path to file input)
  *
- * Return: 0 if 
+ * Return: 0 if success, else failure
  */
 int main(int argc, char **argv)
 {
@@ -35,6 +35,13 @@ int main(int argc, char **argv)
 		instruction = string_trim(line_buf);
 		get_instruction(instruction);
 	}
+
+	fclose(file);
+	if (line_buf != NULL)
+		free(line_buf);
+
+	return (0);
+
 
 	/* sends input to be read and tokenized */
 

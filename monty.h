@@ -38,8 +38,13 @@ typedef struct instruction_s
 
 extern int global_num;
 
-
-int get_instruction(char *op_code);
+/* regular functions */
+int (get_instruction(char *op_code))(stack_t *, unsigned int);
+int num_init(char *str_to_convert);
 char *string_trim(char *str);
+
+/* op functions */
+int op_push(stack_t **head);
+int op_pall(stack_t **head);
 
 #endif
