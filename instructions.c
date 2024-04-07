@@ -37,18 +37,13 @@ int op_pall(stack_t **head, int n)
 	(void)n;
 	stack_t *tmp = NULL;
 
-	if (*head == NULL)
-		printf("*head address: NULL\n");
-	if (*head != NULL)
-		printf("*head value: %d\n", (*head)->n);
-	/*
 	tmp = *head;
 	
 	while (tmp != NULL)
 	{
 		printf("%d\n", tmp->n);
 		tmp = tmp->next;
-	}*/
+	}
 
 	return (1);
 }

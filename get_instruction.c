@@ -30,8 +30,6 @@ int get_instruction(char *op_code, stack_t **head)
 	/* if (tmp != NULL)
 		free(tmp); */
 
-	if (head != NULL)
-		printf("head address: %p\n", head);
 	while (ops[i].opcode != NULL)
 	{
 		/* checks opcode, runs matching function */
