@@ -1,34 +1,21 @@
 #include "monty.h"
 
-int push_value;
-
 /**
  * op_push - adds node to stack
  * @head: current first element in the stack
  *
  * Return: 1 if success, else 0
  */
-int op_push(stack_t **head)
+int op_push(stack_t **head, int n)
 {
-	stack_t *new = NULL;
-
-	if (head == NULL)
-		return (0);
-
-	/* MALLOC ALERT */
-	new = malloc(sizeof(stack_t));
-
-	if (new == NULL)
-		return (0);
-
-	new->n = global_num;
-	new->prev = NULL;
-	new->next = NULL;
+	stack_t *new;
+	
+	new = create_node(n);
 
 	if (*head == NULL)
 	{
 		*head = new;
-		return (*head);
+		return (0);
 	}
 
 	new->next = *head;
@@ -45,16 +32,23 @@ int op_push(stack_t **head)
  *
  * Return: 1 (always success)
  */
-int op_pall(stack_t **head)
+int op_pall(stack_t **head, int n)
 {
+	(void)n;
 	stack_t *tmp = NULL;
 
+	if (*head == NULL)
+		printf("*head address: NULL\n");
+	if (*head != NULL)
+		printf("*head value: %d\n", (*head)->n);
+	/*
 	tmp = *head;
+	
 	while (tmp != NULL)
 	{
-		printf("%s\n", tmp->n);
+		printf("%d\n", tmp->n);
 		tmp = tmp->next;
-	}
+	}*/
 
 	return (1);
 }

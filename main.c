@@ -13,6 +13,8 @@ int main(int argc, char **argv)
 	FILE *file;
 	size_t buf_len = 0;
 	ssize_t read;
+	size_t line_count = 0;
+	stack_t *head = NULL;
 
 	if (argc != 2)
 	{
@@ -29,11 +31,12 @@ int main(int argc, char **argv)
 	
 	/* central loop to get instructions from file */
 	/* REMEMBER TO FREE LINE_BUF */
+
 	while ((read = getline(&line_buf, &buf_len, file)) != -1)
 	{
 		/* REMEMBER TO FREE INSTRUCTION */
 		instruction = string_trim(line_buf);
-		get_instruction(instruction);
+		line_count += get_instruction(instruction, &head);
 	}
 
 	fclose(file);

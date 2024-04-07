@@ -6,7 +6,7 @@
  *
  * Return: pointer to converted num if success, NULL if failure
  */
-int num_init(char *str_to_convert)
+int *num_init(char *str_to_convert)
 {
 	bool is_zero = false;
 	int *new_int;
