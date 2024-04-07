@@ -4,7 +4,7 @@
  * get_instruction - calls matching function for input op code
  * @op_code: string to check in order to match to instruction
  *
- * Return: 0 if success, else failure
+ * Return: 1 if success, 0 if failure
  */
 int get_instruction(char *op_code, stack_t **head)
 {
@@ -40,4 +40,6 @@ int get_instruction(char *op_code, stack_t **head)
 		}
 		i++;
 	}
+
+	return (0);
 }
