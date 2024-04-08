@@ -35,7 +35,10 @@ int main(int argc, char **argv)
 	while ((read = getline(&line_buf, &buf_len, file)) != -1)
 	{
 		if (string_trim(line_buf) == NULL)
+		{
+			line_ct++;
 			continue;
+		}
 		instruction = string_trim(line_buf);
 		if (get_instruction(instruction, &head) == 1)
 			line_ct++;
