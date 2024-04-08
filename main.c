@@ -34,6 +34,11 @@ int main(int argc, char **argv)
 	/* central loop to get instructions from file */
 	while ((read = getline(&line_buf, &buf_len, file)) != -1)
 	{
+		if (string_trim(line_buf) == NULL)
+		{
+			failure = true;
+			break;
+		}
 		instruction = string_trim(line_buf);
 		if (get_instruction(instruction, &head) == 1)
 			line_ct++;

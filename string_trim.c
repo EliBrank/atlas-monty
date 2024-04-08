@@ -17,34 +17,41 @@ char *string_trim(char *str)
 	if (str_trimmed == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
-		exit(EXIT_FAILURE);
+		return (NULL);
 	}
 
 	memset(str_trimmed, 0, (len + 1) * sizeof(char));
 
 	j = 0;
-    for (i = 0; i < len; i++)
-    {
-        /* copies over str's next character if not a space */
-        /* also copies spaces, but only if following char is not a space */
-        if (isspace(str[i]) == 0)
-        {
-            str_trimmed[j] = str[i];
-            word_flag = true;
-            j++;
-        }
-        else
-        {
-          if (word_flag == true)
-          {
-            str_trimmed[j] = str[i];
-            j++;
-          }
-          word_flag = false;
-        }
-    }
+	for (i = 0; i < len; i++)
+	{
+		/* copies over str's next character if not a space */
+		/* also copies spaces, but only if following char is not a space */
+		if (isspace(str[i]) == 0)
+		{
+			str_trimmed[j] = str[i];
+			word_flag = true;
+			j++;
+		}
+		else
+		{
+			/* considers spaces just after words */
+			if (word_flag == true)
+			{
+				str_trimmed[j] = str[i];
+				j++;
+			}
+			word_flag = false;
+		}
+	}
 	if (j > 0 && (str_trimmed[j - 1] == ' '))
 		str_trimmed[j - 1] = '\0';
 
-    return (str_trimmed);
+	if (strcmp(str_trimmed,"") == 0)
+	{
+		// fprintf(stderr, "L%zu: unknown instruction %s\n", line_ct, str_trimmed);
+		return (NULL);
+	}
+
+	return (str_trimmed);
 }

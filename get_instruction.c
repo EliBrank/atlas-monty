@@ -8,7 +8,7 @@
  */
 int get_instruction(char *op_code, stack_t **head)
 {
-	char *op_exec, *tmp;
+	char *op_exec, *tmp, *str_copy;
 	int x = 0;
 	int *push_num = &x;
 	unsigned int i = 0;
@@ -20,6 +20,13 @@ int get_instruction(char *op_code, stack_t **head)
 		// {"add", op_add}, {"nop", op_nop},
 		{NULL, NULL} };
 
+	str_copy = strdup(op_code);
+	
+	if (str_copy == NULL)
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		return (0);
+	}
 	/* tokenize op_code into executable name and number (if exists) */
 	op_exec = strtok(op_code, delim);
 	tmp = strtok(NULL, delim);
@@ -29,6 +36,7 @@ int get_instruction(char *op_code, stack_t **head)
 	/* checks for push without number */
 	else if (strcmp(op_exec, "push") == 0)
     {
+		free(str_copy);
 		fprintf(stderr, "L%zu: usage: push integer\n", line_ct);
         return (0);
     }
@@ -38,11 +46,13 @@ int get_instruction(char *op_code, stack_t **head)
 		/* checks opcode, runs matching function */
 		if (strcmp(op_exec, ops[i].opcode) == 0)
 		{
-			// free(op_exec);
+			free(str_copy);
 			return (ops[i].f(head, push_num));
 		}
 		i++;
 	}
 
+	fprintf(stderr, "L%zu: unknown instruction %s", line_ct, str_copy);
+	free(str_copy);
 	return (0);
 }
