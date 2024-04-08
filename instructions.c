@@ -118,7 +118,6 @@ int op_swap(stack_t **head, int *n)
 		fprintf(stderr, "L%zu: can't swap, stack too short\n", line_ct);
 		return (0);
 	}
-
 	swap->prev = tmp->prev;
 	tmp->next = swap->next;
 	if (swap->next != NULL)
@@ -127,8 +126,10 @@ int op_swap(stack_t **head, int *n)
 		tmp->prev->next = swap;
 	swap->next = tmp;
 	tmp->prev = swap;
+	
+	*head = swap;
 
-	return (0);
+	return (1);
 }
 
 /**
