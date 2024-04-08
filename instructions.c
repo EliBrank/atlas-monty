@@ -105,6 +105,31 @@ int op_pop(stack_t **head, int *n)
  *
  * Return: 1 if success, else 0
  */
+int op_swap(stack_t **head, int *n)
+{
+	(void)n;
+	stack_t *tmp = *head;
+	stack_t *swap = NULL;
+	
+	if (tmp != NULL && tmp->next != NULL)
+		swap = (tmp->next);
+	else
+	{
+		fprintf(stderr, "L%zu: can't swap, stack too short\n", line_ct);
+		return (0);
+	}
+
+	swap->prev = tmp->prev;
+	tmp->next = swap->next;
+	if (swap->next != NULL)
+		swap->next->prev = tmp;
+	if (tmp->prev != NULL)
+		tmp->prev->next = swap;
+	swap->next = tmp;
+	tmp->prev = swap;
+
+	return (0);
+}
 
 /**
  * add - adds the top two elements of the stack together
