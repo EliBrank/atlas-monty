@@ -138,10 +138,37 @@ int op_swap(stack_t **head, int *n)
  *
  * Return: 1 if success, else 0
  */
+int op_add(stack_t **head, int *n)
+{
+	(void)n;
+	stack_t *tmp = *head;
+	stack_t *combine = NULL;
+	
+	if (tmp != NULL && tmp->next != NULL)
+		combine = (tmp->next);
+	else
+	{
+		fprintf(stderr, "L%zu: can't add, stack too short\n", line_ct);
+		return (0);
+	}
+
+	combine->n = combine->n + tmp->n;
+	
+	*head = combine;
+
+	return (1);
+}
 
 /**
  * nop - does nothing
  * @head: current first element in the stack
  *
- * Return: 1 if success, else 0
+ * Return: 1 (always success)
  */
+int op_nop(stack_t **head, int *n)
+{
+	(void)head;
+	(void)n;
+
+	return (1);
+}
