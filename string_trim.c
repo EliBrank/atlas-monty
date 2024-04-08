@@ -11,6 +11,7 @@ char *string_trim(char *str)
 	bool word_flag = false;
 	int len = strlen(str);
 	int i, j;
+
 	/* MALLOC ALERT */
 	char *str_trimmed = (char *)malloc((len + 1) * sizeof(char));
 
@@ -49,7 +50,7 @@ char *string_trim(char *str)
 
 	if (strcmp(str_trimmed,"") == 0)
 	{
-		// fprintf(stderr, "L%zu: unknown instruction %s\n", line_ct, str_trimmed);
+		free(str_trimmed);
 		return (NULL);
 	}
 

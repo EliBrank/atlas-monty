@@ -50,5 +50,10 @@ void free_linked_list(stack_t *head);
 /* op functions */
 int op_push(stack_t **head, int *n);
 int op_pall(stack_t **head, int *n);
+int op_pint(stack_t **head, int *n);
+int op_pop(stack_t **head, int *n);
+/* int op_swap(stack_t **head, int *n); */
+/* int op_add(stack_t **head, int *n); */
+/* int op_nop(stack_t **head, int *n); */
 
 #endif

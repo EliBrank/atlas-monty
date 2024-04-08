@@ -1,18 +1,18 @@
 #include <stdio.h>
-#include "your_header.h"
-
-
-/* Increment the global variable */
-void increment_line_count() {
-    line_ct++;
-}
+#include <string.h>
+#include <stdlib.h>
 
 /* Main function */
 int main() {
-	/* Define and initialize the global variable */
-	size_t line_ct = 0;
+	char *str_original;
+	char *str_modified;
 
-    increment_line_count();  // Incrementing line count
-    print_line_count();      // Printing line count
+	str_original = strdup("this is a test");
+	str_modified = strdup(str_original);
+
+	printf("string_original: %s\n", str_original);
+	printf("string_modified: %s\n", str_modified);
+	free(str_modified);
+
     return 0;
 }

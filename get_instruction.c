@@ -8,7 +8,8 @@
  */
 int get_instruction(char *op_code, stack_t **head)
 {
-	char *op_exec, *tmp, *str_copy;
+	char *op_exec, *tmp;
+	char str_copy[256];
 	int x = 0;
 	int *push_num = &x;
 	unsigned int i = 0;
@@ -16,19 +17,20 @@ int get_instruction(char *op_code, stack_t **head)
 
 	/* array of structs containing instruction and matching function */
 	instruction_t ops[] = { {"push", op_push}, {"pall", op_pall},
-		// {"pint", op_pint}, {"pop", op_pop}, {"swap", op_swap},
+		{"pint", op_pint}, {"pop", op_pop}, //{"swap", op_swap},
 		// {"add", op_add}, {"nop", op_nop},
 		{NULL, NULL} };
 
-	str_copy = strdup(op_code);
-	
+	strncpy(str_copy, op_code, 256);
+	/*	
 	if (str_copy == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
 		return (0);
 	}
+	*/
 	/* tokenize op_code into executable name and number (if exists) */
-	op_exec = strtok(op_code, delim);
+	op_exec = strtok(str_copy, delim);
 	tmp = strtok(NULL, delim);
 
 	if (tmp != NULL)
@@ -36,7 +38,7 @@ int get_instruction(char *op_code, stack_t **head)
 	/* checks for push without number */
 	else if (strcmp(op_exec, "push") == 0)
     {
-		free(str_copy);
+		free(op_code);
 		fprintf(stderr, "L%zu: usage: push integer\n", line_ct);
         return (0);
     }
@@ -46,13 +48,13 @@ int get_instruction(char *op_code, stack_t **head)
 		/* checks opcode, runs matching function */
 		if (strcmp(op_exec, ops[i].opcode) == 0)
 		{
-			free(str_copy);
+			free(op_code);
 			return (ops[i].f(head, push_num));
 		}
 		i++;
 	}
 
-	fprintf(stderr, "L%zu: unknown instruction %s", line_ct, str_copy);
-	free(str_copy);
+	fprintf(stderr, "L%zu: unknown instruction %s", line_ct, op_code);
+	free(op_code);
 	return (0);
 }

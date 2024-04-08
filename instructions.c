@@ -60,6 +60,20 @@ int op_pall(stack_t **head, int *n)
  *
  * Return: 1 if success, else 0
  */
+int op_pint(stack_t **head, int *n)
+{
+	(void)n;
+	if (*head == NULL)
+	{
+		fprintf(stderr, "L%zu: can't pint, stack empty\n", line_ct);
+		return (0);
+	}
+	else
+	{
+		printf("%d\n", (*head)->n);
+		return (1);
+	}
+}
 
 /**
  * pop - removes the top element of the stack
@@ -67,6 +81,23 @@ int op_pall(stack_t **head, int *n)
  *
  * Return: 1 if success, else 0
  */
+int op_pop(stack_t **head, int *n)
+{
+	(void)n;
+	stack_t *tmp = NULL;
+
+	if (*head == NULL)
+	{
+		fprintf(stderr, "L%zu: can't pop an empty stack\n", line_ct);
+		return (0);
+	}
+
+	tmp = *head;
+	*head = (*head)->next;
+	free(tmp);
+
+	return (1);
+}
 
 /**
  * swap - swaps the position of the first two elements in the stack
