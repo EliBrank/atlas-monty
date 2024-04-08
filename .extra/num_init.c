@@ -9,14 +9,16 @@
 int *num_init(char *str_to_convert)
 {
 	bool is_zero = false;
-	int *new_int;
+	int x = 0;
+	int *new_int = &x;
 
 	/* set is_zero flag to true if str_to_convert is actually "0" */
 	if (strcmp(str_to_convert, "0") == 0)
 		is_zero = true;
 	
 	/* change str_to_convert into an integer */
-	*new_int = atoi(str_to_convert);
+	x = atoi(str_to_convert);
+	*new_int = x;
 	if (*new_int == 0 && is_zero == false)
 	{
 		/* str_to_convert was not an integer */

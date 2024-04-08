@@ -12,9 +12,10 @@ int main(int argc, char **argv)
 	char *instruction, *line_buf = NULL;
 	FILE *file;
 	size_t buf_len = 0;
+	size_t line_ct = 0;
 	ssize_t read;
-	size_t line_count = 0;
 	stack_t *head = NULL;
+	bool failure = false;
 
 	if (argc != 2)
 	{
@@ -30,31 +31,36 @@ int main(int argc, char **argv)
 	}
 	
 	/* central loop to get instructions from file */
-	/* REMEMBER TO FREE LINE_BUF */
-
 	while ((read = getline(&line_buf, &buf_len, file)) != -1)
 	{
-		/* REMEMBER TO FREE INSTRUCTION */
 		instruction = string_trim(line_buf);
-		line_count += get_instruction(instruction, &head);
+		if (get_instruction(instruction, &head) == 1)
+		{
+			printf("Line count: %zu\n", line_ct);
+			line_ct++;
+		}
+		else
+		{
+			fprintf(stderr, "Line count: %zu\n", line_ct);
+			failure = true;
+			break;
+		}
 	}
+
+	free_linked_list(head);
+	head = NULL;
 
 	fclose(file);
 	if (line_buf != NULL)
 		free(line_buf);
 
+	if (failure == true)
+		exit(EXIT_FAILURE);
+
 	return (0);
 
 
 	/* sends input to be read and tokenized */
-
-	/*
-	if ( == -1)
-	{
-		fprintf(stderr, "L%d: unknown instruction %s\n", line_num, op_code);
-		exit(EXIT_FAILURE);
-	}
-	*/
 
 	/*
 	if ( == -1)

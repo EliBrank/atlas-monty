@@ -14,7 +14,10 @@ stack_t *create_node(int n)
 	new = malloc(sizeof(stack_t));
 
 	if (new == NULL)
+	{
+		fprintf(stderr, "Error: malloc failed\n");
 		return (NULL);
+	}
 
 	new->n = n;
 	new->next = NULL;

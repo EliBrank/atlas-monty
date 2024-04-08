@@ -6,16 +6,22 @@
  *
  * Return: 1 if success, else 0
  */
-int op_push(stack_t **head, int n)
+int op_push(stack_t **head, int *n)
 {
 	stack_t *new;
-	
-	new = create_node(n);
+
+	if (n == NULL)
+		return (0);
+
+	new = create_node(*n);
+
+	if (new == NULL)
+		return (0);
 
 	if (*head == NULL)
 	{
 		*head = new;
-		return (0);
+		return (1);
 	}
 
 	new->next = *head;
@@ -32,7 +38,7 @@ int op_push(stack_t **head, int n)
  *
  * Return: 1 (always success)
  */
-int op_pall(stack_t **head, int n)
+int op_pall(stack_t **head, int *n)
 {
 	(void)n;
 	stack_t *tmp = NULL;

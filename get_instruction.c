@@ -9,7 +9,8 @@
 int get_instruction(char *op_code, stack_t **head)
 {
 	char *op_exec, *tmp;
-	int push_num;
+	int x = 0;
+	int *push_num = &x;
 	unsigned int i = 0;
 	char *delim = " \n";
 
@@ -24,8 +25,12 @@ int get_instruction(char *op_code, stack_t **head)
 	tmp = strtok(NULL, delim);
 
 	if (tmp != NULL)
-		push_num = atoi(tmp);
-
+		*push_num = atoi(tmp);
+	else if (strcmp(op_exec, "push") == 0)
+    {
+		fprintf(stderr, "L%zu: usage: push integer\n", line_ct);
+        return (0);
+    }
 	/* if tmp returns NULL, then tokenization produced only one arg */
 	/* if (tmp != NULL)
 		free(tmp); */
