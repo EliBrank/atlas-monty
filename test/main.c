@@ -4,12 +4,16 @@
 
 /* Main function */
 int main() {
-	char str[64] = "    this    is    a    test     ";
+	char str[64] = "-0 is a number";
 	char *token;
 	char *delim = " \n";
+	int x;
 
 	token = strtok(str, delim);
 
+	x = atoi(token);
+
+	printf("x = %d\n", x);
 	while (token != NULL)
 	{
 		printf("%s ", token);

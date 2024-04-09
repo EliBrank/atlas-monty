@@ -17,7 +17,10 @@ int op_push(stack_t **head)
 	if (tmp != NULL)
 		push_num = atoi(tmp);
 	/* checks for push without number */
-	if (tmp == NULL || ((push_num == 0) && strcmp(tmp, "0") != 0))
+	
+	if (is_number(tmp) == false)
+	/*((if (strcmp(tmp, "-0") != 0)) && (tmp == NULL ||
+		((push_num == 0) && strcmp(tmp, "0") != 0))) */
     {
 		fprintf(stderr, "L%zu: usage: push integer\n", line_ct);
         return (0);
