@@ -161,8 +161,8 @@ int op_add(stack_t **head)
 	}
 
 	combine->n = combine->n + tmp->n;
-	
-	*head = combine;
+
+	op_pop(head);
 
 	return (1);
 }
