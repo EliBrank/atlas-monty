@@ -8,18 +8,24 @@
  */
 bool is_number(char *str)
 {
-	int atoi_output;
+	size_t i, len;
+	const char *s = str;
 
 	if (str == NULL)
 		return (false);
 
-	atoi_output = atoi(str);
+	len = strlen(str);
+	
+	i = 0;
+	if (str[0] == '-')
+		i++;
 
-	if (strcmp(str, "-0") == 0)
-		return (true);
+	while (i < len)
+	{
+		if (str[i] != '0' && (isdigit(s[i]) == 0))
+			return (false);
+		i++;
+	}
 
-	if ((atoi_output == 0) && strcmp(str, "0") != 0)
-		return (false);
-	else
-		return (true);
+	return (true);
 }

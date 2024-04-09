@@ -4,7 +4,7 @@
 
 /* Main function */
 int main() {
-	char str[64] = "-0 is a number";
+	char str[64] = "123a is a number";
 	char *token;
 	char *delim = " \n";
 	int x;
