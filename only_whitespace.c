@@ -8,13 +8,13 @@
  */
 bool only_whitespace(char *str)
 {
-    while (*str)
+	while (*str)
 	{
-        if (*str != ' ' && *str != '\n' && *str != '\t')
+		if (*str != ' ' && *str != '\n' && *str != '\t')
 		{
-            return (false);
-        }
+			return (false);
+		}
 		str++;
-    }
-    return (true);
+	}
+	return (true);
 }
