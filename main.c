@@ -1,6 +1,6 @@
 #include "monty.h"
 
-size_t line_ct = 1;
+size_t line_ct = 0;
 
 /**
  * main - entrypoint for monty
@@ -39,6 +39,8 @@ int main(int argc, char **argv)
 		/* if (string_trim(line_buf) == NULL)
 			continue;
 		instruction = string_trim(line_buf);*/
+		if (only_whitespace(line_buf))
+			continue;
 		if (get_instruction(line_buf, &head) == 0)
 		{
 			failure = true;

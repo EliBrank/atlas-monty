@@ -10,13 +10,13 @@ int main() {
 
 	token = strtok(str, delim);
 
-	printf("str: %s\n", str);
-	printf("token: %s\n", token);
-
-	token = strtok(NULL, delim);
-
-	printf("str: %s\n", str);
-	printf("token: %s\n", token);
+	while (token != NULL)
+	{
+		printf("%s ", token);
+		token = strtok(NULL, delim);
+	}
+	
+	printf("\n");
 
     return 0;
 }

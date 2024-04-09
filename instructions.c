@@ -6,14 +6,24 @@
  *
  * Return: 1 if success, else 0
  */
-int op_push(stack_t **head, int *n)
+int op_push(stack_t **head)
 {
 	stack_t *new;
+	char *tmp;
+	int push_num;
 
-	if (n == NULL)
-		return (0);
+	tmp = strtok(NULL, " \n");
 
-	new = create_node(*n);
+	if (tmp != NULL)
+		push_num = atoi(tmp);
+	/* checks for push without number */
+	if (tmp == NULL || ((push_num == 0) && strcmp(tmp, "0") != 0))
+    {
+		fprintf(stderr, "L%zu: usage: push integer\n", line_ct);
+        return (0);
+    }
+
+	new = create_node(push_num);
 
 	if (new == NULL)
 		return (0);
@@ -38,9 +48,8 @@ int op_push(stack_t **head, int *n)
  *
  * Return: 1 (always success)
  */
-int op_pall(stack_t **head, int *n)
+int op_pall(stack_t **head)
 {
-	(void)n;
 	stack_t *tmp = NULL;
 
 	tmp = *head;
@@ -60,9 +69,8 @@ int op_pall(stack_t **head, int *n)
  *
  * Return: 1 if success, else 0
  */
-int op_pint(stack_t **head, int *n)
+int op_pint(stack_t **head)
 {
-	(void)n;
 	if (*head == NULL)
 	{
 		fprintf(stderr, "L%zu: can't pint, stack empty\n", line_ct);
@@ -81,9 +89,8 @@ int op_pint(stack_t **head, int *n)
  *
  * Return: 1 if success, else 0
  */
-int op_pop(stack_t **head, int *n)
+int op_pop(stack_t **head)
 {
-	(void)n;
 	stack_t *tmp = NULL;
 
 	if (*head == NULL)
@@ -105,9 +112,8 @@ int op_pop(stack_t **head, int *n)
  *
  * Return: 1 if success, else 0
  */
-int op_swap(stack_t **head, int *n)
+int op_swap(stack_t **head)
 {
-	(void)n;
 	stack_t *tmp = *head;
 	stack_t *swap = NULL;
 	
@@ -138,9 +144,8 @@ int op_swap(stack_t **head, int *n)
  *
  * Return: 1 if success, else 0
  */
-int op_add(stack_t **head, int *n)
+int op_add(stack_t **head)
 {
-	(void)n;
 	stack_t *tmp = *head;
 	stack_t *combine = NULL;
 	
@@ -165,10 +170,9 @@ int op_add(stack_t **head, int *n)
  *
  * Return: 1 (always success)
  */
-int op_nop(stack_t **head, int *n)
+int op_nop(stack_t **head)
 {
 	(void)head;
-	(void)n;
 
 	return (1);
 }

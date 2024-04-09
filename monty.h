@@ -35,25 +35,26 @@ typedef struct stack_s
 typedef struct instruction_s
 {
 	char *opcode;
-	int (*f)(stack_t **stack, int *push_num);
+	int (*f)(stack_t **stack);
 } instruction_t;
 
 extern size_t line_ct;
 
 /* regular functions */
 int get_instruction(char *op_code, stack_t **head);
-char *string_trim(char *str);
+/* char *string_trim(char *str); */
 stack_t *create_node(int n);
-int *num_init(char *str_to_convert);
+/* int *num_init(char *str_to_convert); */
 void free_linked_list(stack_t *head);
+bool only_whitespace(char *str);
 
 /* op functions */
-int op_push(stack_t **head, int *n);
-int op_pall(stack_t **head, int *n);
-int op_pint(stack_t **head, int *n);
-int op_pop(stack_t **head, int *n);
-int op_swap(stack_t **head, int *n);
-int op_add(stack_t **head, int *n);
-int op_nop(stack_t **head, int *n);
+int op_push(stack_t **head);
+int op_pall(stack_t **head);
+int op_pint(stack_t **head);
+int op_pop(stack_t **head);
+int op_swap(stack_t **head);
+int op_add(stack_t **head);
+int op_nop(stack_t **head);
 
 #endif
