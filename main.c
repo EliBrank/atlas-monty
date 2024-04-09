@@ -11,7 +11,8 @@ size_t line_ct = 1;
  */
 int main(int argc, char **argv)
 {
-	char *instruction, *line_buf = NULL;
+	// char *instruction;
+	char *line_buf = NULL;
 	FILE *file;
 	size_t buf_len = 0;
 	ssize_t read;
@@ -34,15 +35,11 @@ int main(int argc, char **argv)
 	/* central loop to get instructions from file */
 	while ((read = getline(&line_buf, &buf_len, file)) != -1)
 	{
-		if (string_trim(line_buf) == NULL)
-		{
-			line_ct++;
+		line_ct++;
+		/* if (string_trim(line_buf) == NULL)
 			continue;
-		}
-		instruction = string_trim(line_buf);
-		if (get_instruction(instruction, &head) == 1)
-			line_ct++;
-		else
+		instruction = string_trim(line_buf);*/
+		if (get_instruction(line_buf, &head) == 0)
 		{
 			failure = true;
 			break;

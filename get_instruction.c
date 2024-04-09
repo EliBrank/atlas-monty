@@ -38,7 +38,7 @@ int get_instruction(char *op_code, stack_t **head)
 	/* checks for push without number */
 	else if (strcmp(op_exec, "push") == 0)
     {
-		free(op_code);
+		// free(op_code);
 		fprintf(stderr, "L%zu: usage: push integer\n", line_ct);
         return (0);
     }
@@ -48,13 +48,13 @@ int get_instruction(char *op_code, stack_t **head)
 		/* checks opcode, runs matching function */
 		if (strcmp(op_exec, ops[i].opcode) == 0)
 		{
-			free(op_code);
+			// free(op_code);
 			return (ops[i].f(head, push_num));
 		}
 		i++;
 	}
 
 	fprintf(stderr, "L%zu: unknown instruction %s", line_ct, op_code);
-	free(op_code);
+	// free(op_code);
 	return (0);
 }

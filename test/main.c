@@ -4,15 +4,19 @@
 
 /* Main function */
 int main() {
-	char *str_original;
-	char *str_modified;
+	char str[64] = "    this    is    a    test     ";
+	char *token;
+	char *delim = " \n";
 
-	str_original = strdup("this is a test");
-	str_modified = strdup(str_original);
+	token = strtok(str, delim);
 
-	printf("string_original: %s\n", str_original);
-	printf("string_modified: %s\n", str_modified);
-	free(str_modified);
+	printf("str: %s\n", str);
+	printf("token: %s\n", token);
+
+	token = strtok(NULL, delim);
+
+	printf("str: %s\n", str);
+	printf("token: %s\n", token);
 
     return 0;
 }
