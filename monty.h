@@ -47,6 +47,7 @@ stack_t *create_node(int n);
 /* int *num_init(char *str_to_convert); */
 void free_linked_list(stack_t *head);
 bool only_whitespace(char *str);
+bool is_number(char *str);
 
 /* op functions */
 int op_push(stack_t **head);

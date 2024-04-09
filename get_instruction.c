@@ -42,12 +42,15 @@ int get_instruction(char *op_code, stack_t **head)
 		i++;
 	}
 
-	fprintf(stderr, "L%zu: unknown instruction ", line_ct);
-	while (op_token != NULL)
+	printf("op_token: %zu%s\n", line_ct, op_token);
+	fprintf(stderr, "L%zu: unknown instruction %s\n", line_ct, op_token);
+	/*while (op_token != NULL)
 	{
-		fprintf(stderr, "%s ", op_token);
+		if (is_number(op_token) == true)
+			break;
+		fprintf(stderr, " %s", op_token);
 		op_token = strtok(NULL, delim);
 	}
-	fprintf(stderr, "\n");
+	fprintf(stderr, "\n");*/
 	return (0);
 }
