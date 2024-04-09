@@ -42,7 +42,6 @@ int get_instruction(char *op_code, stack_t **head)
 		i++;
 	}
 
-	printf("op_token: %zu%s\n", line_ct, op_token);
 	fprintf(stderr, "L%zu: unknown instruction %s\n", line_ct, op_token);
 	/*while (op_token != NULL)
 	{
