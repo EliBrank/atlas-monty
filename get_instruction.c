@@ -3,16 +3,13 @@
 /**
  * get_instruction - calls matching function for input op code
  * @op_code: string to check in order to match to instruction
+ * @head: first node in stack_t list
  *
  * Return: 1 if success, 0 if failure
  */
 int get_instruction(char *op_code, stack_t **head)
 {
 	char *op_token;
-	// char *tmp;
-	// char str_copy[256];
-	// int x = 0;
-	// int *push_num = &x;
 	unsigned int i = 0;
 	char *delim = " \n";
 
@@ -21,14 +18,6 @@ int get_instruction(char *op_code, stack_t **head)
 		{"pint", op_pint}, {"pop", op_pop}, {"swap", op_swap},
 		{"add", op_add}, {"nop", op_nop}, {NULL, NULL} };
 
-	// strncpy(str_copy, op_code, 256);
-	/*	
-	if (str_copy == NULL)
-	{
-		fprintf(stderr, "Error: malloc failed\n");
-		return (0);
-	}
-	*/
 	/* tokenize op_code into executable name and number (if exists) */
 	op_token = strtok(op_code, delim);
 
@@ -43,13 +32,5 @@ int get_instruction(char *op_code, stack_t **head)
 	}
 
 	fprintf(stderr, "L%zu: unknown instruction %s\n", line_ct, op_token);
-	/*while (op_token != NULL)
-	{
-		if (is_number(op_token) == true)
-			break;
-		fprintf(stderr, " %s", op_token);
-		op_token = strtok(NULL, delim);
-	}
-	fprintf(stderr, "\n");*/
 	return (0);
 }

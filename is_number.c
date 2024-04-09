@@ -15,7 +15,7 @@ bool is_number(char *str)
 		return (false);
 
 	len = strlen(str);
-	
+
 	i = 0;
 	if (str[0] == '-')
 		i++;
